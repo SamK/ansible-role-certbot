@@ -39,4 +39,4 @@
 
 - name: Generate new certificate if one doesn't exist.
   command: "{{ certbot_create_command }}"
-  when: not letsencrypt_cert.stat.exists
+  when: not letsencrypt_cert.stat.exists or (certbot_force_create is defined and certbot_force_create)
