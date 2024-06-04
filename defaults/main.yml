@@ -14,6 +14,7 @@ certbot_hsts: false
 certbot_create_if_missing: false
 certbot_create_method: standalone
 certbot_admin_email: email@example.com
+certbot_extra_opts: ""
 
 # Default webroot, overwritten by individual per-cert webroot directories
 certbot_webroot: /var/www/letsencrypt
@@ -42,6 +43,7 @@ certbot_create_command: >-
   {{ '--post-hook /etc/letsencrypt/renewal-hooks/post/start_services'
     if certbot_create_standalone_stop_services and certbot_create_method == 'standalone'
   else '' }}
+  {{ certbot_extra_opts }}
 
 certbot_create_standalone_stop_services:
   - nginx
